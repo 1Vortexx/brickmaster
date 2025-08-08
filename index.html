@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invite BrickMaster Bot</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #2a0845, #6a00f4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://codehs.com/uploads/1f8d4fafb6abe5aa09b091c6f092ea62') no-repeat center center/cover;
+      filter: brightness(0.3) blur(3px);
+      z-index: -1;
+    }
+
+    .invite-box {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(12px);
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(160, 100, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .invite-box h1 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: #ffffff;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+      color: #ddd;
+    }
+
+    a.invite-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #a44aff, #6a00f4);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.15rem;
+      padding: 0.85rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      user-select: none;
+    }
+
+    a.invite-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #a44aff;
+    }
+
+    .links {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    .links a {
+      color: #bbaaff;
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .links a:hover {
+      color: #ddd;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: #888;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="invite-box" role="main" aria-label="Invite BrickMaster Bot">
+    <h1>BrickMaster Bot</h1>
+    <p class="description">
+      Manage sessions, votes, tickets, and moderation tailored for Brick Rigs communities.<br/>
+      Easy to set up, free to use, and continuously improving with community feedback.
+    </p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot"
+       class="invite-btn" target="_blank" rel="noopener noreferrer" aria-label="Invite BrickMaster Bot to your Discord server">
+       Invite the Bot
+    </a>
+    <div class="links" role="navigation" aria-label="Additional links">
+      <a href="https://discord.devsolutionssystemsinc.store" target="_blank" rel="noopener noreferrer">Support Server</a>
+      <a href="https://brickmaster.devsolutionssystemsinc.store" target="_blank" rel="noopener noreferrer">More Info</a>
+    </div>
+    <footer>
+      &copy; 2025 DevSolutions Systems — 1Vortexx
+    </footer>
+  </div>
+</body>
+</html>
