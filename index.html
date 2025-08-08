@@ -1,120 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Invite BrickMaster Bot</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brick Master | RP Server Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, rgba(15,15,30,0.9), rgba(25,25,50,0.9)),
+      url('https://i.imgur.com/OuZ6xMx.jpeg') no-repeat center/cover;
+    color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top, #2a0845, #6a00f4);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-    }
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+    z-index: 999;
+    border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+  }
 
-    .background {
+  .nav-logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #00f7ff;
+    text-shadow: 0 0 8px rgba(0, 247, 255, 0.8);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .nav-links a {
+    color: #00f7ff;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+
+  .nav-links a:hover {
+    background: rgba(0, 247, 255, 0.1);
+    box-shadow: 0 0 8px #00f7ff;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #00f7ff;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
       position: absolute;
+      top: 60px;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: url('https://codehs.com/uploads/1f8d4fafb6abe5aa09b091c6f092ea62') no-repeat center center/cover;
-      filter: brightness(0.3) blur(3px);
-      z-index: -1;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
 
-    .invite-box {
-      background: rgba(255, 255, 255, 0.07);
-      padding: 2.5rem 2rem;
-      border-radius: 15px;
-      backdrop-filter: blur(12px);
-      width: 400px;
+    .nav-links.show {
+      max-height: 300px;
+      padding: 15px 0;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+
+  header {
+    text-align: center;
+    padding: 140px 20px 80px;
+  }
+
+  .typing {
+    font-size: 2.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #00f7ff;
+    width: 0;
+    animation: typing 4s steps(30, end) forwards, blink 0.6s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  .button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(0, 247, 255, 0.1);
+    border: 1px solid #00f7ff;
+    border-radius: 30px;
+    color: #00f7ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .button:hover {
+    background: #00f7ff;
+    color: black;
+  }
+
+  section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .feature-box:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 247, 255, 0.15);
+  }
+
+  .faq-item {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 15px;
+  }
+
+  #support div.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    margin-top: 50px;
+  }
+
+  /* New Credits section styles */
+  #credits {
+    max-width: 900px;
+    margin: 60px auto 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #credits img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #00f7ff;
+    box-shadow: 0 0 8px #00f7ff;
+    object-fit: cover;
+  }
+
+  #credits .credit-info {
+    flex: 1;
+  }
+
+  #credits .credit-info h3 {
+    margin: 0 0 6px;
+    font-weight: 700;
+    color: #00f7ff;
+  }
+
+  #credits .credit-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #b0f7ffcc;
+  }
+
+  /* Changelog styles */
+  #changelog {
+    max-width: 900px;
+    margin: 60px auto 20px;
+    background: rgba(0, 247, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 0 15px #00f7ff66;
+  }
+
+  #changelog h2 {
+    color: #00f7ff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 6px #00f7ffaa;
+  }
+
+  #changelog ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #changelog li {
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 3px solid #00f7ff;
+  }
+
+  #changelog li strong {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 480px) {
+    #credits {
+      flex-direction: column;
       text-align: center;
-      box-shadow: 0 0 20px rgba(160, 100, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.15);
     }
-
-    .invite-box h1 {
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      color: #ffffff;
+    #credits img {
+      margin-bottom: 15px;
     }
-
-    .description {
-      font-size: 1rem;
-      line-height: 1.4;
-      margin-bottom: 2.5rem;
-      color: #ddd;
-    }
-
-    a.invite-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, #a44aff, #6a00f4);
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.15rem;
-      padding: 0.85rem 2.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.2s ease-in-out;
-      user-select: none;
-    }
-
-    a.invite-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #a44aff;
-    }
-
-    .links {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #bbb;
-    }
-
-    .links a {
-      color: #bbaaff;
-      text-decoration: none;
-      margin: 0 1rem;
-      transition: color 0.2s ease-in-out;
-    }
-
-    .links a:hover {
-      color: #ddd;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.75rem;
-      color: #888;
-      user-select: none;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="background"></div>
-
-  <div class="invite-box" role="main" aria-label="Invite BrickMaster Bot">
-    <h1>BrickMaster Bot</h1>
-    <p class="description">
-      Manage sessions, votes, tickets, and moderation tailored for Brick Rigs communities.<br/>
-      Easy to set up, free to use, and continuously improving with community feedback.
-    </p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot"
-       class="invite-btn" target="_blank" rel="noopener noreferrer" aria-label="Invite BrickMaster Bot to your Discord server">
-       Invite the Bot
-    </a>
-    <div class="links" role="navigation" aria-label="Additional links">
-      <a href="https://discord.devsolutionssystemsinc.store" target="_blank" rel="noopener noreferrer">Support Server</a>
-      <a href="https://brickmaster.devsolutionssystemsinc.store" target="_blank" rel="noopener noreferrer">More Info</a>
+  <nav>
+    <div class="nav-logo">Brick Master</div>
+    <div
+      class="menu-toggle"
+      onclick="document.querySelector('.nav-links').classList.toggle('show')"
+      >☰</div
+    >
+    <div class="nav-links">
+      <a href="#changelog">Changelog</a>
+      <a href="#features">Base Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="#support">Support</a>
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot"
+        target="_blank"
+        >Add Brick Master</a
+      >
+      <a href="https://github.com/1Vortexx/brickmaster" target="_blank"
+        >Open Source Repo</a
+      >
     </div>
-    <footer>
-      &copy; 2025 DevSolutions Systems — 1Vortexx
-    </footer>
-  </div>
+  </nav>
+
+  <header id="home">
+  <div class="typing">BrickMaster</div>
+  <p>
+    Your all-in-one Discord utility to manage your Brick Rigs RP Discord
+    server.
+  </p>
+  <a
+    href="https://discord.devsolutionssystemsinc.store"
+    class="button"
+    target="_blank"
+    >Join Support Server</a
+  >
+  <a
+    href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot"
+    class="button"
+    target="_blank"
+    >Add Brick Master</a
+  >
+  <a
+    href="https://github.com/1Vortexx/brickmaster"
+    class="button"
+    target="_blank"
+    >GitHub Repo</a
+  >
+</header>
+
+  <section id="features">
+    <h2 style="text-align: center">Features</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Session Management Commands</h3>
+        <p>
+          Brick Master keeps your RP sessions running smoothly with a arsenal of
+          session management commands
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3>Fully Customizable</h3>
+        <p>
+          <b>Most</b> commands ae fully customizable through the <code>B!setup</code>
+          command
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3>
+          <s>Ticket & Support Management</s>
+          <b>[COMING AUGUST 2025 / IN ACTIVE DEVELOPMENT]</b>
+        </h3>
+        <p>
+          BrickMaster can host and manage tickets to your need for your
+          specifications, when you need.
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3>
+          <s>Economy System</s>
+          <b>[COMING LATE SEMPTEMBER 2025]</b>
+        </h3>
+        <p>BrickMaster has a built in economy systems just for your needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2 style="text-align: center">FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is Brick Master?</div>
+      <div class="faq-answer">
+        Brick Master is a Discord bot and toolkit for managing Brick Rigs RP
+        servers.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Is it free?</div>
+      <div class="faq-answer">
+        Brick Master if fully free to use.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I add it to my server?</div>
+      <div class="faq-answer">
+        You can add Brick master with the buttons above
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2 style="text-align: center">Support & Links</h2>
+    <p style="text-align: center">
+      Need help or want to get started? Here are the key links for Brick Master.
+    </p>
+    <div class="button-row">
+      <a
+        href="https://discord.devsolutionssystemsinc.store"
+        target="_blank"
+        class="button"
+        >Join Support Server</a
+      >
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot"
+        target="_blank"
+        class="button"
+        >Add Brick Master</a
+      >
+      <a
+        href="https://github.com/1Vortexx/brickmaster"
+        target="_blank"
+        class="button"
+        >Open Source Repo</a
+      >
+    </div>
+  </section>
+
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <ul>
+      <li>
+        <strong>v1.0.0 - August 8, 2025</strong>
+        <p>- Initial release with session management and customization commands.</p>
+      </li>
+      <li>
+        <strong>v1.1.0 - August 8, 2025</strong>
+        <p>
+        - Added @everyone ping support for session pings
+        <br>
+        - Added Image customization for embeds
+        <br>
+        - Updated Websocket endpoint with <code>brickmasterbot.xyz</code>for faster connections & lower latency</p>
+      </li>
+    </ul>
+  </section>
+
+  <h2 style="text-align: center">Credits</h2>
+  <section id="credits">
+    <img
+      src="https://codehs.com/uploads/c99b99972aceff9d12d616819890c372"
+      alt="Credit Profile Picture"
+    />
+    <div class="credit-info">
+      <h3>1Vortexx</h3>
+      <p>
+        Lead Developer & Project Manager for Brick Master. Developed Brick Master through his development company - DevSolutions Systems. Passionate about creating intuitive tools to assist Discord communities.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DevSolutions Systems Inc. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach((q) => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('active');
+      });
+    });
+  document.querySelectorAll('nav .nav-links a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetID = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetID);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+      // Close menu on mobile after click (optional)
+      document.querySelector('.nav-links').classList.remove('show');
+    });
+  });
+  </script>
 </body>
 </html>
