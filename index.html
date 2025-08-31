@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brick Master | RP Server Management</title>
-<link rel="icon" href="https://i.imgur.com/5vPLmXC.png" type="image/png">
+<link rel="icon" href="https://i.imgur.com/Urs0eP4.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -29,6 +29,22 @@ body {
   background: url('https://i.imgur.com/qmMH6tz.jpeg') no-repeat center center/cover;
   color: var(--text);
   scroll-behavior: smooth;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Glowing Blob Background */
+.blob {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255,0,0,0.4), rgba(255,0,0,0));
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Top Navigation */
@@ -83,7 +99,9 @@ nav {
 
 /* Header */
 header {
-  text-align:center; padding:160px 20px 100px;
+  text-align:center; padding:160px 20px 60px;
+  position: relative;
+  z-index: 1;
 }
 
 header h1 {
@@ -111,7 +129,7 @@ header p {
 }
 
 /* Sections */
-section {padding:80px 20px; max-width:1000px; margin:auto;}
+section {padding:80px 20px; max-width:1000px; margin:auto; position: relative; z-index: 1;}
 h2 {text-align:center; margin-bottom:40px; font-weight:700; font-size:2rem; color: var(--bg3); text-shadow: 0 0 6px var(--bg3);}
 
 /* Features */
@@ -162,9 +180,46 @@ footer {text-align:center; padding:25px; margin-top:50px; background: rgba(0,0,0
 
 /* Responsive Credits */
 @media(max-width:480px){#credits {flex-direction:column; text-align:center;} #credits img {margin-bottom:15px;}}
+
+/* Embedded Alert Section */
+.alert-section {
+  background: linear-gradient(135deg, #ff2a2a, #8a0b52);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255, 0, 80, 0.6);
+}
+.alert-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+.alert-section p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.alert-section a {
+  display: inline-block;
+  background: #fff;
+  color: #8a0b52;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+.alert-section a:hover {
+  background: #ffb3d1;
+  color: #000;
+}
 </style>
 </head>
 <body>
+
+<!-- Glowing Red Blob -->
+<div class="blob"></div>
 
 <nav>
   <div class="nav-logo">Brick Master</div>
@@ -174,8 +229,8 @@ footer {text-align:center; padding:25px; margin-top:50px; background: rgba(0,0,0
     <a href="#features">Features</a>
     <a href="#faq">FAQ</a>
     <a href="#support">Support</a>
+    <a href="blog-open-source.html">Blog</a>
     <a href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot" target="_blank">Add Bot</a>
-    <a href="https://github.com/1Vortexx/brickmaster" target="_blank">GitHub Repo</a>
   </div>
 </nav>
 
@@ -186,6 +241,13 @@ footer {text-align:center; padding:25px; margin-top:50px; background: rgba(0,0,0
   <a href="https://discord.com/oauth2/authorize?client_id=1218023858917867590&permissions=8&integration_type=0&scope=bot" class="button" target="_blank">Add Bot</a>
   <a href="https://github.com/1Vortexx/brickmaster" class="button" target="_blank">View GitHub</a>
 </header>
+
+<!-- Embedded Alert Section -->
+<section class="alert-section">
+  <h2>🚨 Important Notice</h2>
+  <p>The BrickMaster Team is updating its open-source regulations. Click below for more info.</p>
+  <a href="blog.html">Read More</a>
+</section>
 
 <section id="features">
   <h2>Features</h2>
